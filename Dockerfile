@@ -3,6 +3,7 @@ FROM python:3.9-alpine as builder
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip
+RUN pip install --no-cache-dir torch==1.11.0
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Runtime stage
