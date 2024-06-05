@@ -1,8 +1,5 @@
 FROM python:3.9-slim as builder
  
-# Pull the Qdrant image
-RUN docker pull qdrant/qdrant
- 
 WORKDIR /app
 COPY . /app
 RUN pip install --upgrade pip
@@ -24,7 +21,8 @@ ENV NAME .env
 # COPY --from=builder /usr/local/bin/python ./site-packages/bin/python
 # COPY . .
 # COPY .env .
- 
+# Qdrant stage
+FROM qdrant/qdrant:latest as qdrant
 # Set environment variables for Qdrant (if needed)
 ENV QDRANT_HOST=qdrant_host
 ENV QDRANT_PORT=6333
