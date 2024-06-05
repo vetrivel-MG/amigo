@@ -3,10 +3,10 @@ FROM python:3.9-slim as builder
 WORKDIR /app
 COPY . /app
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir torch==1.12.0
-RUN pip install --no-cache-dir pymongo
+# RUN pip install --no-cache-dir torch==1.12.0
+# RUN pip install --no-cache-dir pymongo
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir qdrant-client
+# RUN pip install --no-cache-dir qdrant-client
  
 # Copy Qdrant configuration (if needed)
 # COPY qdrant_config.yaml /app/qdrant_config.yaml
