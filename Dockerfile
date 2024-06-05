@@ -4,6 +4,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir torch==1.12.0
+RUN pip install --no-cache-dir pymongo
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Runtime stage
