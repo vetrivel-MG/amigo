@@ -13,5 +13,6 @@ COPY --from=builder /usr/local/lib/python3.9/site-packages ./site-packages
 COPY --from=builder /usr/local/bin/python ./site-packages/bin/python
 COPY . .
 COPY .env .
-RUN echo "import os; os.environ.update(dict(line.split('=') for line in open('.env') if not line.startswith('#') and '=' in line)); import subprocess; subprocess.run(['python', 'automatic_updation.py']); subprocess.run(['python', 'output.py'])" > run_scripts.py
-CMD ["python", "run_scripts.py"]
+# RUN echo "import os; os.environ.update(dict(line.split('=') for line in open('.env') if not line.startswith('#') and '=' in line)); import subprocess; subprocess.run(['python', 'automatic_updation.py']); subprocess.run(['python', 'output.py'])" > run_scripts.py
+# CMD ["python", "run_scripts.py"]
+CMD ["python", "database_updation/automatic_updation.py", "&&", "python", "endpoint/output.py"]
