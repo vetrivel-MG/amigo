@@ -15,5 +15,5 @@ ENV NAME .env
 # ENV QDRANT_PORT=6333
 
 CMD ["python", "database_updation/automatic_updation.py"]
-CMD ["uvicorn","output:app","--reload","--port","8000"]
+CMD ["uvicorn","endpoint/output:app","--reload","--port","8000"]
 
