@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir qdrant-client
 # Copy Qdrant configuration (if needed)
 # COPY qdrant_config.yaml /app/qdrant_config.yaml
  
-EXPOSE 8080 6333
+EXPOSE 8000 6333
 ENV NAME .env
  
 # Runtime stage
