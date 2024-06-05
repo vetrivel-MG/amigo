@@ -17,13 +17,13 @@ RUN pip install --no-cache-dir qdrant-client
 EXPOSE 8000 6333
 ENV NAME .env
  
-# Runtime stage
-FROM python:3.9-slim
-WORKDIR /app
-COPY --from=builder /usr/local/lib/python3.9/site-packages ./site-packages
-COPY --from=builder /usr/local/bin/python ./site-packages/bin/python
-COPY . .
-COPY .env .
+# # Runtime stage
+# FROM python:3.9-slim
+# WORKDIR /app
+# COPY --from=builder /usr/local/lib/python3.9/site-packages ./site-packages
+# COPY --from=builder /usr/local/bin/python ./site-packages/bin/python
+# COPY . .
+# COPY .env .
  
 # Set environment variables for Qdrant (if needed)
 ENV QDRANT_HOST=qdrant_host
