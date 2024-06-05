@@ -1,15 +1,12 @@
 FROM python:3.9-slim as builder
 WORKDIR /app
 COPY . /app
+# COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000 6333
 ENV NAME .env
-
-# Install Supervisor
-RUN apt-get update && apt-get install -y supervisor
-
-# Copy the Supervisor configuration file
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-CMD ["supervisord.conf"]
+# FROM qdrant/qdrant:latest as qdrant
+# ENV QDRANT_HOST=qdrant_host
+# ENV QDRANT_PORT=6333
+CMD ["python", "database_updation/automatic_updation.py"]
