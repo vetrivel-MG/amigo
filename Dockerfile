@@ -8,9 +8,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 # RUN pip install --no-cache-dir qdrant-client
  
-# Copy Qdrant configuration (if needed)
-# COPY qdrant_config.yaml /app/qdrant_config.yaml
- 
+
 EXPOSE 8000 6333
 ENV NAME .env
  
