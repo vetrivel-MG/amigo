@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  qdrant:
+    image: qdrant/qdrant:v1.0.0
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  web:
+    image: vetri8903/my-python-app:latest # Replace with your Docker Hub username
+    container_name: my_python_app
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=mongodb
+      - MONGODB_cloudDev_db=cloudDev
+      - MONGODB_docusign_db=docusign
+      - MONGODB_marketplace_db=marketplace
+      - QDRANT_COLLECTION_NAME=mongodb_collection2
+      - SENDER_EMAIL=saaspeamigo@gmail.com
+      - RECEIVER_EMAIL=vetrivel.m@mind-graph.com
+      - APP_PASSWORD=pjhe tcsv mxqy jgts
+      - API_TYPE=azure
+      - API_KEY=2dd4400d079a4fd49ddd2e864802522a
+      - AZURE_ENDPOINT=https://genai-interns.openai.azure.com/
+      - API_VERSION=2023-07-01-preview
+      - default_collection_name=mongodb_collection2
+    depends_on:
+      - mongodb
+      - qdrant
+
+volumes:
+  mongo_data:
+  qdrant_data:
