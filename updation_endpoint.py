@@ -25,7 +25,7 @@ cloudDev_db = mongo_client[os.environ.get("MONGODB_cloudDev_db")]
 docusign_db = mongo_client[os.environ.get("MONGODB_docusign_db")]
 marketplace_db = mongo_client[os.environ.get("MONGODB_marketplace_db")]
 
-qdrant_client = QdrantClient(host=os.environ.get("QDRANT_HOST"), port=int(os.environ.get("QDRANT_PORT")))
+qdrant_client = QdrantClient(os.environ.get("QDRANT_CONNECTION_STRING"))
 
 collection_name = os.environ.get("QDRANT_COLLECTION_NAME")
 
