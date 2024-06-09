@@ -110,6 +110,7 @@ def background_scheduler():
     while True:
         current_time = datetime.datetime.now().time()
         scheduled_time = datetime.time(11, 50)
+        logging.info(f"Current time: {current_time}, Scheduled time: {scheduled_time}")
         if current_time < scheduled_time:
             logging.info(f"The transfer is going to happen at {scheduled_time.strftime('%H:%M')}")
         elif current_time > scheduled_time:
@@ -119,6 +120,7 @@ def background_scheduler():
             logging.info(f"Next scheduled data transfer: {next_scheduled_time.strftime('%Y-%m-%d %H:%M:%S')}")
         schedule.run_pending()
         time.sleep(60)
+
 
 def perform_similarity_search(collection_name, query):
     query_vector = encoder.encode(query).tolist()
