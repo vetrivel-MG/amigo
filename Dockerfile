@@ -11,6 +11,9 @@ COPY . /app
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Set the timezone
+RUN ln -snf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && echo "Asia/Kolkata" > /etc/timezone
+
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
