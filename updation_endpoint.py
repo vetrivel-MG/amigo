@@ -104,12 +104,12 @@ def run_data_transfer():
     logging.info("Data transfer process completed.")
     send_email_notification(subject, body, sender_email, receiver_email, app_password)
 
-schedule.every().day.at("11:50").do(run_data_transfer)
+schedule.every().day.at("17:50").do(run_data_transfer)
 
 def background_scheduler():
     while True:
         current_time = datetime.datetime.now().time()
-        scheduled_time = datetime.time(11, 50)
+        scheduled_time = datetime.time(17, 50)
         logging.info(f"Current time: {current_time}, Scheduled time: {scheduled_time}")
         if current_time < scheduled_time:
             logging.info(f"The transfer is going to happen at {scheduled_time.strftime('%H:%M')}")
