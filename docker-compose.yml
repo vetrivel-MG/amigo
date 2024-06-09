@@ -13,15 +13,16 @@ services:
       - mongo_data:/data/db
 
   qdrant:
-    image: qdrant/qdrant:v1.0.0
+    image: qdrant/qdrant:latest  # Use 'latest' tag or specify a version
     container_name: qdrant
     ports:
       - "6333:6333"
+      - "6334:6334"
     volumes:
-      - qdrant_data:/qdrant/storage
+      - ./qdrant_storage:/qdrant/storage:z  # Ensure this path exists on your host system
 
   web:
-    image: vetri8903/my-python-app:latest # Replace with your Docker Hub username
+    image: vetri8903/my-python-app:latest  # Ensure this image exists
     container_name: my_python_app
     ports:
       - "8000:8000"
@@ -31,9 +32,9 @@ services:
       - QDRANT_PORT=6333
       - MONGODB_USERNAME=admin
       - MONGODB_PASSWORD=mongodb
-      - MONGODB_cloudDev_db=cloudDev
-      - MONGODB_docusign_db=docusign
-      - MONGODB_marketplace_db=marketplace
+      - MONGODB_cloudDev_db=cloudDev1
+      - MONGODB_docusign_db=docusign1
+      - MONGODB_marketplace_db=marketplace1
       - QDRANT_COLLECTION_NAME=mongodb_collection2
       - SENDER_EMAIL=saaspeamigo@gmail.com
       - RECEIVER_EMAIL=vetrivel.m@mind-graph.com
