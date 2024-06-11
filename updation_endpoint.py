@@ -41,7 +41,7 @@ body = "This is to notify you that (day -1) data has been updated to the databas
 
 app = FastAPI()
 encoder = SentenceTransformer("all-MiniLM-L6-v2")
-client = QdrantClient("http://localhost:6333")
+client = QdrantClient(os.environ.get("QDRANT_CONNECTION_STRING"))
 
 openai.api_type = os.environ.get("API_TYPE")
 openai.api_key = os.environ.get("API_KEY")
