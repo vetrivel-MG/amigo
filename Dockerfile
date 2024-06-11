@@ -23,8 +23,8 @@ RUN curl -L https://github.com/qdrant/qdrant/releases/download/v0.8.12/qdrant-v0
 # Extract Qudrant binary
 RUN tar -xzf qdrant.tar.gz
 
-# Move Qudrant binary to /usr/local/bin
-RUN mv qdrant /usr/local/bin/
+# Move Qudrant binary to /usr/bin
+RUN mv qdrant /usr/bin/
 
 # Expose the port for the Python application
 EXPOSE 8000
