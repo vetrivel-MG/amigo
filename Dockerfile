@@ -18,10 +18,10 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && echo "Asia/Kolkat
 EXPOSE 8000
 
 # Define environment variables
-ENV NAME .env
-ENV MONGO_URI=mongodb://mongodb:27017
-ENV QDRANT_HOST=qdrant
-ENV QDRANT_PORT=6333
+# ENV NAME .env
+# ENV MONGO_URI=mongodb://mongodb:27017
+# ENV QDRANT_HOST=qdrant
+# ENV QDRANT_PORT=6333
 
 # Run the command to start the application using Uvicorn
 CMD ["uvicorn", "updation_endpoint:app", "--host", "0.0.0.0", "--port", "8000"]
