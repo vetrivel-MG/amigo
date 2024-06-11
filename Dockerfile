@@ -15,10 +15,10 @@ COPY . .
 
 # Install Qudrant
 RUN apt-get update && \
-    apt-get install -y wget && \
-    wget https://github.com/qudrant/qudrant/releases/download/v0.6.0/qudrant-v0.6.0-linux-amd64.tar.gz && \
-    tar -xzf qudrant-v0.6.0-linux-amd64.tar.gz && \
-    mv qudrant /usr/local/bin/
+    apt-get install -y curl && \
+    curl -L https://github.com/qdrant/qdrant/releases/download/v0.8.12/qdrant-v0.8.12-linux-amd64.tar.gz -o qdrant.tar.gz && \
+    tar -xzf qdrant.tar.gz && \
+    mv qdrant /usr/local/bin/
 
 # Expose the port for the Python application
 EXPOSE 8000
