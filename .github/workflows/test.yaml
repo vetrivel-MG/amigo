@@ -29,8 +29,7 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/my-python-app:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/my-python-app:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}fastapi-app:latest
         labels: |
           type=ref,event=branch
           type=semver,pattern={{version}}
