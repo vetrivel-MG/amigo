@@ -1,63 +1,24 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+  fastapi_app:
+    image: vetri8903/fastapi-app
+    container_name: fastapi
     ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
+      - "8000:8000"
+    depends_on:
+      - qdrand  
     networks:
-      - amigo_network
-
-  qdrant:
-    image: qdrant/qdrant:latest
+      - mongodb_app_network
+        
+  qdrand:
+    image: qdrant/qdrant
     container_name: qdrant
     ports:
       - "6333:6333"
-      - "6334:6334"
-    volumes:
-      - ./qdrant_storage:/qdrant/storage:z
     networks:
-      - amigo_network
-
-  web:
-    build:
-      context: .
-    container_name: my_python_app
-    ports:
-      - "8000:8000"
-    environment:
-      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/
-      - QDRANT_HOST=qdrant
-      - QDRANT_PORT=6333
-      - MONGODB_USERNAME=admin
-      - MONGODB_PASSWORD=mongodb
-      - MONGODB_cloudDev_db=cloudDev1
-      - MONGODB_docusign_db=docusign1
-      - MONGODB_marketplace_db=marketplace1
-      - QDRANT_COLLECTION_NAME=mongodb_collection2
-      - SENDER_EMAIL=saaspeamigo@gmail.com
-      - RECEIVER_EMAIL=vetrivel.m@mind-graph.com
-      - APP_PASSWORD=pjhe tcsv mxqy jgts
-      - API_TYPE=azure
-      - API_KEY=2dd4400d079a4fd49ddd2e864802522a
-      - AZURE_ENDPOINT=https://genai-interns.openai.azure.com/
-      - API_VERSION=2023-07-01-preview
-      - default_collection_name=mongodb_collection2
-    depends_on:
-      - mongodb
-      - qdrant
-    networks:
-      - amigo_network
-
-volumes:
-  mongo_data:
-  qdrant_data:
-
+      - mongodb_app_network
+ 
 networks:
-  amigo_network:
+  mongodb_app_network:
+    driver: bridge

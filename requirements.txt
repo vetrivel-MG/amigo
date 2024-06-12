@@ -1,8 +1,8 @@
-pymongo
-qdrant-client
-sentence-transformers
-schedule
-fastapi
-uvicorn
+pymongo==4.7.3
+qdrant-client==1.9.1
+sentence-transformers==3.0.1
+schedule==1.2.2
+fastapi==0.111.0
+uvicorn==0.30.1
 openai==0.28.0
-python-dotenv
+python-dotenv==1.0.1
